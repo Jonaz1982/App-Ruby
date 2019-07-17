@@ -1,0 +1,21 @@
+- products.each do |product|
+  %tr
+    %td
+      = product.name
+    %td
+      = product.product_type
+    %td
+      = product.color
+    %td
+      = product.size
+    %td
+      = number_to_currency(product.unit_price)
+    %td
+      = link_to show_product_path(product) do
+        %button.btn.btn-primary.btn-sm Ver
+    %td
+      = link_to edit_product_path(product) do
+        %button.btn.btn-primary.btn-sm Editar
+    %td
+      = link_to delete_product_path(product), method: :delete, data: { confirm: '¿Estás seguro?' } do
+        %button.btn.btn-danger.btn-sm Eliminar

@@ -1,0 +1,8 @@
+.row
+  .col-md-12
+    .box.box-primary
+      .box-header.with-border
+        %h3.box-title Crear Cliente
+
+      = form_for @client, url: create_client_path, method: :post do |f|
+        = render 'clients/partials/form', f: f

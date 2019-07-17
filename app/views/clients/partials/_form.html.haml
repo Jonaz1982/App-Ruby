@@ -1,0 +1,16 @@
+.box-body
+  .form-group
+    = label(:name, 'Nombre')
+    = f.text_field :name, class: 'form-control', placeholder: 'Ingrese el nombre'
+  .form-group
+    = label(:client_type, 'Tipo de Cliente')
+    = f.select :client_type, options_for_select([['Natural'], ['Jurídico']]), { include_blank: false }, { class: 'form-control select2', name: 'client[client_type]' }
+  .form-group
+    = label(:identification_type, 'Tipo de Identificación')
+    = f.select :client_type, options_for_select([['NIT'], ['Cedula']]), { include_blank: false }, { class: 'form-control select2', name: 'client[identification_type]' }
+  .form-group
+    = label(:identification_number, 'Número de Identificación')
+    = f.number_field :identification_number, class: 'form-control', placeholder: 'Ingrese el número de identificación'
+  .box-footer
+    .pull-right
+      = f.submit action_name.eql?('new') ? 'Guardar' : 'Editar', class: 'btn btn-primary'

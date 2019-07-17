@@ -1,0 +1,70 @@
+!!!
+%html
+  = render 'partials/head'
+  %body.hold-transition.skin-blue.sidebar-mini
+    .wrapper
+      %header.main-header
+        = link_to root_path, class: 'logo' do
+          %span.logo-mini
+            %b T
+            P
+          %span.logo-lg
+            %b Testing
+            Project
+
+        %nav.navbar.navbar-static-top
+
+      %aside.main-sidebar
+        %section.sidebar
+          %ul.sidebar-menu{ 'data-widget': 'tree' }
+            %li.treeview
+              %a{ href: '#' }
+                %i.fa.fa-dashboard
+                %span Productos
+                %span.pull-right-container
+                  %i.fa.fa-angle-left.pull-right
+              %ul.treeview-menu
+                %li
+                  = link_to new_product_path do
+                    %i.fa.fa-circle-o
+                    Registrar
+                %li
+                  = link_to listing_products_path do
+                    %i.fa.fa-circle-o
+                    Consultar
+
+            %li.treeview
+              %a{ href: '#' }
+                %i.fa.fa-dashboard
+                %span Clientes
+                %span.pull-right-container
+                  %i.fa.fa-angle-left.pull-right
+              %ul.treeview-menu
+                %li
+                  = link_to new_client_path do
+                    %i.fa.fa-circle-o
+                    Registrar
+                %li
+                  = link_to listing_clients_path do
+                    %i.fa.fa-circle-o
+                    Consultar
+
+            %li.treeview
+              %a{ href: '#' }
+                %i.fa.fa-dashboard
+                %span Pedidos
+                %span.pull-right-container
+                  %i.fa.fa-angle-left.pull-right
+              %ul.treeview-menu
+                %li
+                  = link_to listing_sales_path do
+                    %i.fa.fa-circle-o
+                    Consultar
+                %li
+                  = link_to new_sale_path do
+                    %i.fa.fa-circle-o
+                    Registrar
+
+      .content-wrapper
+        %section.content
+          = yield

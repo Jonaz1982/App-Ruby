@@ -1,0 +1,58 @@
+.container-fluid
+  .row
+    .col-lg-12
+
+      %h3.box-title Cliente
+
+      .box.slice-box
+        .box-body.no-padding
+          %table.table
+            %thead
+              %tr
+                %th
+                  Nombre
+                %th
+                  Tipo de Cliente
+                %th
+                  Tipo de Identificación
+                %th
+                  Número de Identificación
+                %th
+            %tbody
+              %tr
+                %td
+                  = @client.name
+                %td
+                  = @client.client_type
+                %td
+                  = @client.identification_type
+                %td
+                  = @client.identification_number
+                %td
+                  = link_to edit_client_path(@client) do
+                    %button.btn.btn-primary.btn-sm Editar
+                %td
+                  = link_to delete_client_path(@client), method: :delete, data: { confirm: '¿Estás seguro?' } do
+                    %button.btn.btn-danger.btn-sm Eliminar
+
+      - unless @client.buys.blank?
+
+        %h3.box-title Compras
+        - @client.buys.each do |buy|
+          .box.slice-box
+            %h4.box-title
+              Fecha
+              = buy.parsed_created_at
+            .box-body.no-padding
+              %table.table
+                %thead
+                  %tr
+                    %th Producto
+                    %th Categoría
+                    %th Precio
+                %tbody
+                  - buy.products.each do |product|
+                    %tr
+                      %td= product.name
+                      %td= product.category
+                      %td= product.price

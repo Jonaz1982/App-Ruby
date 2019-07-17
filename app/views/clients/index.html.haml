@@ -1,0 +1,19 @@
+.container-fluid
+  .row
+    .col-lg-12
+      %h3.box-title Clientes (#{@clients.count})
+
+      .box.slice-box
+        .box-body.no-padding
+          %table.table
+            %thead
+              %tr
+                %th Nombre
+                %th Tipo de cliente
+                %th Tipo de Identificación
+                %th Númer de Identificación
+                %th
+                %th
+                %th
+            %tbody
+              = render 'clients/partials/listing'

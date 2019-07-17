@@ -1,0 +1,39 @@
+.container-fluid
+  .row
+    .col-lg-12
+      %h3.box-title Producto
+
+      .box.slice-box
+        .box-body.no-padding
+          %table.table
+            %thead
+              %tr
+                %th
+                  Nombre
+                %th
+                  Tipo de Producto
+                %th
+                  Color
+                %th
+                  Tamaño
+                %th
+                  Precio Unitario
+                %th
+            %tbody
+              %tr
+                %td
+                  = @product.name
+                %td
+                  = @product.product_type
+                %td
+                  = @product.color
+                %td
+                  = @product.size
+                %td
+                  = number_to_currency(@product.unit_price)
+                %td
+                  = link_to edit_product_path(@product) do
+                    %button.btn.btn-primary.btn-sm Editar
+                %td
+                  = link_to delete_product_path(@product), method: :delete, data: { confirm: '¿Estás seguro?' } do
+                    %button.btn.btn-danger.btn-sm Eliminar

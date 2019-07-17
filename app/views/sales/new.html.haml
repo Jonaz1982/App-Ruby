@@ -1,0 +1,68 @@
+%link{href: 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', rel: 'stylesheet'}/
+%script{src: 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js'}
+
+.row
+  .col-md-12
+    .box.box-primary
+      .box-header.with-border
+        %h3.box-title Registrar Venta
+
+      = form_for @sale, url: create_sale_path, method: :post do |f|
+        .box-body
+          .form-group
+            = label(:client_id, 'Cliente')
+            = f.select :client_id, options_for_select(@clients), {}, { class: 'form-control' }
+          .form-group
+            = label(:product_ids, 'Productos')
+            = f.select :product_ids, options_for_select(@products), { include_blank: true }, { class: 'form-control select2', name: 'sale[product_ids][]' }
+          .box-footer
+            .pull-right
+              = f.submit 'Guardar', class: 'btn btn-primary'
+
+            %h5
+              %strong Subtotal:
+              %span#subtotal 0
+              $
+            %h5
+              %strong Iva:
+              %span#iva 0
+              $
+            %h5
+              %strong Total:
+              %span#total 0
+              $
+
+
+:javascript
+  $( document ).on('turbolinks:load', function() {
+    $('.select2').select2({
+      multiple: true
+    })
+
+    $('.select2').change(function() {
+      makeRequest()
+    })
+  })
+
+  function makeRequest() {
+    var product_ids = $('.select2').val()
+
+    $.ajax({
+      url: '/get_total',
+      type: 'POST',
+      data: { product_ids: product_ids },
+      dataType: 'JSON',
+      success: function(data) {
+        handleData(data);
+      },
+      error: function() {
+        alert('Revise su conexión a internet');
+      }
+    });
+  }
+
+  function handleData(data) {
+    $('#subtotal').html(data[0])
+    $('#iva').html(data[1])
+    $('#total').html(data[2])
+  }

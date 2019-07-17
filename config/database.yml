@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: root
+  password: root
+  pool: 5
+  timeout: 5000
+  host: localhost
+development:
+  <<: *default
+  database: testing-db
+test:
+  <<: *default
+  database: testing-db
+production:
+  <<: *default
+  database: testing-db

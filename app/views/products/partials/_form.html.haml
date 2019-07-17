@@ -1,0 +1,20 @@
+= form_for @product, url: create_product_path, method: :post do |f|
+  .box-body
+    .form-group
+      = label(:name, 'Nombre')
+      = f.text_field :name, class: 'form-control', placeholder: 'Ingrese el nombre del Producto'
+    .form-group
+      = label(:product_type, 'Tipo de Producto')
+      = f.text_field :product_type, class: 'form-control', placeholder: 'Ingrese el tipo del Producto'
+    .form-group
+      = label(:color, 'Color')
+      = f.select :color, options_for_select([['AMARILLO'], ['AZUL'], ['VERDE'], ['ROJO'], ['NEGRO'], ['BLANCO']]), { include_blank: false }, { class: 'form-control select2', name: 'product[color]' }
+    .form-group
+      = label(:size, 'Tamaño (cm)')
+      = f.number_field :size, class: 'form-control', placeholder: 'Ingrese el Tamaño del Producto'
+    .form-group
+      = label(:unit_price, 'Precio Unitario')
+      = f.number_field :unit_price, class: 'form-control', placeholder: 'Ingrese el Precio Unitario'
+    .box-footer
+      .pull-right
+        = f.submit action_name.eql?('new') ? 'Guardar' : 'Editar', class: 'btn btn-primary'

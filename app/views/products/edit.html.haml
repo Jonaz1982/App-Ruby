@@ -1,0 +1,8 @@
+.row
+  .col-md-12
+    .box.box-primary
+      .box-header.with-border
+        %h3.box-title Editar Producto
+
+      = form_for @product, url: update_product_path, method: :patch do |f|
+        = render 'products/partials/form', f: f

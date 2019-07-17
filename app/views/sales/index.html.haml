@@ -1,0 +1,41 @@
+.container-fluid
+  .row
+    .col-lg-12
+      %h3.box-title Pedidos (#{@sales.count})
+
+      - @sales.each do |sale|
+        .box.slice-box
+          .box-body.no-padding
+            %table.table
+              %thead
+                %tr
+                  %th Cliente
+                  %th Fecha
+                  %th Subtotal
+                  %th Iva
+                  %th Total
+              %tbody
+                %tr
+                  %td= sale.client.name
+                  %td= sale.parsed_created_at
+                  %td= sale.subtotal
+                  %td= sale.iva
+                  %td= sale.total
+
+            %h3{ style: 'margin-left: 5px' } Productos
+            %table.table
+              %thead
+                %tr
+                  %th Producto
+                  %th Tipo de Producto
+                  %th Color
+                  %th Tamaño
+                  %th Precio Unitario
+              %tbody
+                - sale.products.each do |product|
+                  %tr
+                    %td= product.name
+                    %td= product.product_type
+                    %td= product.color
+                    %td= product.size
+                    %td= product.unit_price
